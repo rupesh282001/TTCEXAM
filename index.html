@@ -9,9 +9,10 @@
 
 <style>
 @keyframes scrollRightToLeft {
-  0% { transform: translateX(100%); opacity: 1; }
-  100% { transform: translateX(-100%); opacity: 1; }
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
+
 .scrolling-question {
   white-space: nowrap;
   animation: scrollRightToLeft 10s linear 2 forwards;
@@ -38,9 +39,7 @@
          class="w-full border p-2 mb-3 rounded"
          placeholder="Enter Email Address">
 
-  <!-- ROLE SELECT -->
-  <select id="studentRole"
-          class="w-full border p-2 mb-4 rounded">
+  <select id="studentRole" class="w-full border p-2 mb-4 rounded">
     <option value="">Select Role</option>
     <option value="assistant">Assistant Secretary</option>
     <option value="junior">Junior Executive</option>
@@ -142,135 +141,133 @@ const QUESTIONS_ASSISTANT_SECRETARY = [
 ];
 
 const QUESTIONS_JUNIOR_EXECUTIVE = [
-"What is Finance, and why is it important for an organization?",
+"Finance is the management of money, including raising, allocating, and utilizing funds. It is important because it ensures smooth operations, profitability, growth, and long-term survival of an organization.",
 
-"Explain the concept of Financial Planning.",
+"Financial Planning is the process of estimating future financial needs and deciding how funds will be acquired and used to achieve organizational goals efficiently.",
 
-"What are the main objectives of Financial Management?",
+"The main objectives of Financial Management are profit maximization, wealth maximization, efficient utilization of funds, financial stability, and risk management.",
 
-"What is Working Capital, and why is it important?",
+"Working Capital is the difference between current assets and current liabilities. It is important because it ensures liquidity and smooth day-to-day operations.",
 
-"Explain the difference between Capital Expenditure and Revenue Expenditure.",
+"Capital Expenditure is expenditure on long-term assets like buildings and machinery, whereas Revenue Expenditure is incurred on routine operational expenses such as wages and electricity.",
 
-"What is Budgeting, and what are its advantages?",
+"Budgeting is the process of preparing a financial plan for a specific period. Its advantages include cost control, better planning, coordination, and performance evaluation.",
 
-"Explain the concept of Cash Flow.",
+"Cash Flow refers to the movement of cash into and out of a business and helps ensure the organization can meet its financial obligations.",
 
-"What are Financial Statements, and why are they important?",
+"Financial Statements are formal records such as the Balance Sheet, Income Statement, and Cash Flow Statement used for analysis, decision-making, and transparency.",
 
-"What is the role of a Junior Executive in the Finance Department?",
+"The role of a Junior Executive in the Finance Department includes maintaining accounts, preparing reports, handling invoices, and assisting audits.",
 
-"Explain the importance of Internal Control in Finance.",
+"Internal Control in finance ensures accuracy of records, prevention of fraud, safeguarding of assets, and compliance with policies.",
 
-"What is a Co-operative? Explain its basic concept.",
+"A Co-operative is a voluntary association formed to promote the economic interests of its members through mutual help and democratic management.",
 
-"Explain the main objectives of the Co-operative Movement.",
+"The objectives of the Co-operative Movement include mutual assistance, economic equality, social welfare, and protection of weaker sections.",
 
-"Describe the principles of Co-operation.",
+"The principles of Co-operation include voluntary membership, democratic control, member participation, autonomy, education, and concern for the community.",
 
-"What are the different types of Co-operative Societies?",
+"Types of Co-operative Societies include Consumer, Producer, Credit, Marketing, Housing, and Agricultural Co-operatives.",
 
-"Explain the importance of Co-operatives in economic development.",
+"Co-operatives contribute to economic development by generating employment, reducing exploitation, and promoting inclusive growth.",
 
-"What is the organizational structure of a Co-operative Society?",
+"The organizational structure of a Co-operative Society includes the General Body, Managing Committee, and administrative staff.",
 
-"Explain the role of a Junior Executive in a Co-operative Society.",
+"The role of a Junior Executive in a Co-operative Society includes maintaining records, assisting management, and coordinating with members.",
 
-"What is the importance of Membership in a Co-operative Society?",
+"Membership is important in a Co-operative Society because members are both owners and users, ensuring participation and shared benefits.",
 
-"Explain the concept of Democratic Management in Co-operatives.",
+"Democratic Management in Co-operatives follows the principle of one member, one vote, ensuring equality and transparency.",
 
-"What is the role of Co-operative Education and Training?",
+"Co-operative Education and Training improve awareness, management skills, and efficiency of members and employees.",
 
-"What is Management? Explain its importance in an organization.",
+"Management is the process of planning, organizing, staffing, directing, and controlling resources to achieve organizational goals.",
 
-"Explain the main functions of management.",
+"The main functions of management are Planning, Organizing, Staffing, Directing, and Controlling.",
 
-"What is Planning? Discuss its significance.",
+"Planning involves deciding in advance what to do and how to do it to achieve objectives efficiently.",
 
-"Define Organizing and explain its process.",
+"Organizing is the process of arranging tasks, authority, and resources to achieve organizational goals.",
 
-"What is Staffing? Why is it important?",
+"Staffing involves recruitment, selection, training, and development of employees and ensures the right people are placed in the right jobs.",
 
-"Explain the concept of Motivation.",
+"Motivation is the process of encouraging employees to work enthusiastically toward organizational goals.",
 
-"What is Leadership? State its qualities.",
+"Leadership is the ability to influence others. Key qualities include integrity, confidence, communication skills, and decision-making ability.",
 
-"Define Communication and explain its importance in management.",
+"Communication is the exchange of information and is essential for coordination, decision-making, and effective management.",
 
-"What is Controlling? Describe its steps.",
+"Controlling ensures activities are performed as planned through setting standards, measuring performance, and corrective action.",
 
-"Explain the role of a Junior Executive in an organization.",
+"The role of a Junior Executive in an organization includes assisting management, supervising work, and implementing policies.",
 
-"What is politics and why is it important in society?",
+"Politics is the process of making collective decisions for society and is important for governance and public welfare.",
 
-"Explain the concept of democracy.",
+"Democracy is a system of government in which power rests with the people, exercised directly or through representatives.",
 
-"What are the main functions of a government?",
+"The main functions of government include law-making, administration, defense, maintaining order, and public welfare.",
 
-"Define political parties and their role.",
+"Political parties are organized groups that contest elections, form governments, and represent public interests.",
 
-"What is the difference between a presidential and parliamentary system?",
+"A Presidential system has a clear separation between executive and legislature, while a Parliamentary system has an executive responsible to the legislature.",
 
-"What is the meaning of political ideology?",
+"Political ideology is a set of beliefs and ideas that guide political behavior and policy-making.",
 
-"Explain the concept of separation of powers.",
+"Separation of powers divides authority among the legislature, executive, and judiciary to prevent misuse of power.",
 
-"What is the significance of elections in a democracy?",
+"Elections are significant in a democracy as they ensure representation, accountability, and peaceful transfer of power.",
 
-"Define civil rights and give examples.",
+"Civil rights are basic rights such as freedom of speech, equality before law, and the right to life.",
 
-"How does public policy impact society?",
+"Public policy impacts society by influencing economic growth, social welfare, environmental protection, and governance.",
 
-"What is environmental sustainability and why is it important for businesses?",
+"Environmental sustainability means using resources responsibly without compromising future generations and is vital for long-term business survival.",
 
-"Explain the main causes of air pollution.",
+"The main causes of air pollution include industrial emissions, vehicle exhaust, burning of fossil fuels, and deforestation.",
 
-"What are the major types of waste, and how can they be managed?",
+"Major types of waste include solid, liquid, hazardous, and electronic waste, which can be managed through recycling and safe disposal.",
 
-"How does climate change affect the environment and businesses?",
+"Climate change affects the environment and businesses through extreme weather, rising costs, and resource scarcity.",
 
-"What is the role of environmental policies in an organization?",
+"Environmental policies guide organizations to reduce environmental impact and comply with legal requirements.",
 
-"Explain the concept of carbon footprint and how it can be reduced.",
+"A carbon footprint is the total greenhouse gas emissions caused by activities and can be reduced through energy efficiency and renewable energy use.",
 
-"What are renewable and non-renewable resources? Give examples.",
+"Renewable resources include solar and wind energy, while non-renewable resources include coal and petroleum.",
 
-"Describe the concept of circular economy.",
+"The circular economy focuses on reducing waste by reusing, recycling, and extending product life cycles.",
 
-"How can businesses contribute to environmental conservation?",
+"Businesses can contribute to environmental conservation by adopting green practices and reducing emissions.",
 
-"What is the importance of Environmental Impact Assessment (EIA) in project planning?",
+"Environmental Impact Assessment evaluates the environmental effects of a project before approval to ensure sustainable development.",
 
-"Explain the role of a State Government in policy formulation and implementation. What challenges are commonly faced at the state level?",
+"The State Government formulates and implements policies related to education, health, agriculture, and law and order, facing challenges like limited resources.",
 
-"Discuss the importance of evidence-based policymaking in State Government. How can data improve policy outcomes?",
+"Evidence-based policymaking uses data and research to design effective policies and improve outcomes.",
 
-"What is the significance of coordination between State Government departments and local bodies in policy implementation?",
+"Coordination between state departments and local bodies ensures efficient and effective policy implementation.",
 
-"Explain the role of ethics and accountability in State Government administration. Why are they important for public policy?",
+"Ethics and accountability in State Government administration promote transparency, trust, and good governance.",
 
-"Describe how public participation contributes to better policy outcomes at the state level.",
+"Public participation improves policy outcomes by reflecting local needs and increasing acceptance.",
 
-"Explain the role and responsibilities of a Junior Executive (Discipline) in an organization.",
+"The role of a Junior Executive (Discipline) includes monitoring conduct, maintaining records, and assisting disciplinary authorities.",
 
-"What is meant by principles of natural justice? Explain their importance in disciplinary proceedings.",
+"Principles of natural justice ensure fairness through the right to be heard and absence of bias in disciplinary proceedings.",
 
-"Describe the steps involved in conducting a disciplinary inquiry against an employee.",
+"Disciplinary inquiry involves issuing a charge sheet, conducting an inquiry, providing opportunity to defend, and passing orders.",
 
-"How can discipline and employee morale be balanced in an organization?",
+"Balancing discipline and employee morale requires fairness, clear communication, and corrective approaches.",
 
-"Why is documentation important in disciplinary matters? Explain with examples."
+"Documentation in disciplinary matters is essential for legal validity, transparency, and accountability."
 ]
-
 ;
-
 /* ================================================= */
 
-const QUESTION_VISIBLE_TIME = 20;
-const ANSWER_TIME = 100;
+const QUESTION_VISIBLE_TIME = 20; // seconds
+const ANSWER_TIME = 100;          // seconds
 
-let QUESTIONS = [];   // dynamic
+let QUESTIONS = [];
 let studentName = "", studentEmail = "", studentRole = "";
 let answers = [], index = 0;
 let questionTimer, answerTimer, answerTimeLeft;
@@ -287,7 +284,6 @@ function startExam() {
     return;
   }
 
-  // Assign questions based on role
   QUESTIONS = studentRole === "assistant"
     ? QUESTIONS_ASSISTANT_SECRETARY
     : QUESTIONS_JUNIOR_EXECUTIVE;
@@ -316,6 +312,7 @@ function loadQuestion() {
   void q.offsetWidth;
 
   q.innerText = QUESTIONS[index];
+  q.style.visibility = "visible";
   q.classList.add("scrolling-question");
 
   document.getElementById("answer").value = "";
@@ -325,9 +322,12 @@ function loadQuestion() {
   clearTimeout(questionTimer);
   clearInterval(answerTimer);
 
-  questionTimer = setTimeout(() => q.innerText = "",
-    QUESTION_VISIBLE_TIME * 1000);
+  // Hide question after 20 seconds
+  questionTimer = setTimeout(() => {
+    q.style.visibility = "hidden";
+  }, QUESTION_VISIBLE_TIME * 1000);
 
+  // Answer timer
   answerTimer = setInterval(() => {
     answerTimeLeft--;
     updateTimer();
@@ -365,19 +365,6 @@ function normalFinish() {
   goToLogin();
 }
 
-/* VIOLATION */
-function violationFinish(reason) {
-  if (examFinished) return;
-
-  examFinished = true;
-  clearTimeout(questionTimer);
-  clearInterval(answerTimer);
-  exitFullscreen();
-
-  alert(reason + "\nExam terminated.");
-  goToLogin();
-}
-
 /* GO BACK */
 function goToLogin() {
   document.getElementById("exam").classList.add("hidden");
@@ -400,7 +387,8 @@ function sendAnswersByEmail() {
 /* SECURITY */
 document.addEventListener("visibilitychange", () => {
   if (document.hidden && !examFinished) {
-    violationFinish("Tab switching detected");
+    alert("Tab switching detected. Exam terminated.");
+    location.reload();
   }
 });
 
@@ -424,8 +412,3 @@ function exitFullscreen() {
 
 </body>
 </html>
-
-
-
-
-
