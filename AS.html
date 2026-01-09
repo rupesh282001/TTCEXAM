@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secure Descriptive Exam</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 h-screen overflow-hidden flex items-center justify-center">
+
+<div class="bg-white shadow-2xl rounded-xl w-full max-w-xl p-6 max-h-[90vh] overflow-hidden">
+
+  <!-- LOGIN -->
+  <div id="login">
+    <h1 class="text-2xl font-bold text-center mb-4">Online Exam</h1>
+
+    <input id="studentName" type="text" placeholder="Enter Full Name"
+      class="w-full border rounded p-2 mb-3">
+
+    <input id="studentEmail" type="email" placeholder="Enter Email Address"
+      class="w-full border rounded p-2 mb-4">
+
+    <button onclick="startExam()"
+      class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+      Start Exam
+    </button>
+  </div>
+
+  <!-- EXAM -->
+  <div id="exam" class="hidden h-full flex flex-col">
+
+    <!-- HEADER -->
+    <div class="flex justify-between items-center mb-3">
+      <span id="timer" class="text-red-600 font-bold text-lg"></span>
+      <span class="text-sm text-gray-500">
+        Copy / Paste / Tab switch disabled
+      </span>
+    </div>
+
+    <!-- SCROLLABLE CONTENT -->
+    <div id="scrollArea" class="flex-1 overflow-y-auto pr-2">
+
+      <h2 id="question" class="font-semibold text-lg mb-3"></h2>
+
+      <textarea id="answer"
+        class="w-full border rounded p-3 h-60 mb-4 resize-none"
+        placeholder="Type your answer here..."
+        onpaste="return false"
+        oncopy="return false"
+        oncut="return false"></textarea>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="pt-3 border-t">
+      <button onclick="nextQuestion()"
+        class="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700">
+        Next
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+/* ================= CONFIG ================= */
+const QUESTIONS = [
+  "Explain Artificial Intelligence in detail.",
+  "What is Cloud Computing? Explain types and benefits.",
+  "Explain REST API with examples."
+];
+
+const QUESTION_VISIBLE_TIME = 10; // seconds
+const ANSWER_TIME = 120;          // seconds
+/* ========================================= */
+
+let studentName = "";
+let studentEmail = "";
+let answers = [];
+let index = 0;
+
+let answerTimeLeft;
+let answerTimer;
+let questionTimer;
+
+let examFinished = false;
+
+/* START EXAM */
+function startExam() {
+  studentName = document.getElementById("studentName").value.trim();
+  studentEmail = document.getElementById("studentEmail").value.trim();
+
+  if (!studentName || !studentEmail) {
+    return alert("Enter name and email address");
+  }
+
+  resetState();
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("exam").classList.remove("hidden");
+
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  }
+
+  loadQuestion();
+}
+
+/* RESET */
+function resetState() {
+  answers = [];
+  index = 0;
+  examFinished = false;
+}
+
+/* LOAD QUESTION */
+function loadQuestion() {
+  document.getElementById("question").innerText = QUESTIONS[index];
+  document.getElementById("answer").value = "";
+  document.getElementById("scrollArea").scrollTop = 0;
+
+  answerTimeLeft = ANSWER_TIME;
+  updateTimer();
+
+  clearTimeout(questionTimer);
+  clearInterval(answerTimer);
+
+  // Hide question after 10 seconds
+  questionTimer = setTimeout(() => {
+    document.getElementById("question").innerText = "";
+  }, QUESTION_VISIBLE_TIME * 1000);
+
+  // Answer timer
+  answerTimer = setInterval(() => {
+    answerTimeLeft--;
+    updateTimer();
+    if (answerTimeLeft <= 0) nextQuestion();
+  }, 1000);
+}
+
+/* TIMER */
+function updateTimer() {
+  document.getElementById("timer").innerText =
+    `Answer time left: ${answerTimeLeft}s`;
+}
+
+/* NEXT QUESTION */
+function nextQuestion() {
+  if (examFinished) return;
+
+  clearTimeout(questionTimer);
+  clearInterval(answerTimer);
+
+  answers.push(document.getElementById("answer").value);
+  index++;
+
+  if (index < QUESTIONS.length) {
+    loadQuestion();
+  } else {
+    normalFinish();
+  }
+}
+
+/* NORMAL FINISH → EMAIL */
+function normalFinish() {
+  examFinished = true;
+
+  clearTimeout(questionTimer);
+  clearInterval(answerTimer);
+
+  exitFullscreen();
+  sendAnswersByEmail();
+
+  alert("Exam completed. Please send the email to submit your answers.");
+  goToLogin();
+}
+
+/* VIOLATION */
+function violationFinish(reason) {
+  if (examFinished) return;
+  examFinished = true;
+
+  clearTimeout(questionTimer);
+  clearInterval(answerTimer);
+
+  exitFullscreen();
+  alert(reason + "\nExam terminated.");
+  goToLogin();
+}
+
+/* EMAIL LOGIC */
+function sendAnswersByEmail() {
+  let body =
+    `Student Name: ${studentName}\n` +
+    `Student Email: ${studentEmail}\n\n`;
+
+  QUESTIONS.forEach((q, i) => {
+    body += `Question ${i + 1}:\n${q}\n\n`;
+    body += `Answer:\n${answers[i] || "No answer"}\n`;
+    body += `------------------------------\n\n`;
+  });
+
+  const subject = encodeURIComponent(`Exam Submission — ${studentName}`);
+  const emailBody = encodeURIComponent(body);
+
+  const mailto =
+    `mailto:surirupesh2001@gmail.com?subject=${subject}&body=${emailBody}`;
+
+  window.location.href = mailto;
+}
+
+/* TAB SWITCH */
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden && !examFinished) {
+    violationFinish("Tab switching detected");
+  }
+});
+
+/* BLOCK CTRL+C / CTRL+V / CMD+C / CMD+V */
+document.addEventListener("keydown", (e) => {
+  if (
+    (e.ctrlKey || e.metaKey) &&
+    (e.key.toLowerCase() === "c" || e.key.toLowerCase() === "v")
+  ) {
+    e.preventDefault();
+    alert("Copy / Paste is not allowed");
+  }
+});
+
+/* DISABLE RIGHT CLICK */
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+/* PAGE EXIT BLOCK */
+window.onbeforeunload = () => {
+  if (!examFinished) return "Exam in progress";
+};
+
+/* EXIT FULLSCREEN */
+function exitFullscreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+}
+</script>
+
+</body>
+</html>
